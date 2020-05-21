@@ -82,7 +82,7 @@ function QRForm() {
               useQueryString: true,
             },
             params: {
-              size: '600',
+              size: '300',
               file: 'svg',
               "config":{
                 "body":`${body}`,
@@ -103,7 +103,7 @@ function QRForm() {
             },
           })
             .then(response => {
-              console.log(response)
+            //   console.log(response)
               const qrcode = response.data
               setQrCode(qrcode)
             })
@@ -112,7 +112,7 @@ function QRForm() {
             })
     }
 
-    // console.log('body color: ', bodyColor)
+    // console.log('qr code: ', qrCode)
 
     return(
         <div className="columns">
@@ -241,7 +241,6 @@ function QRForm() {
 
                 {/* EYE FRAME SELECTION */}
                 <div className="form-section">
-                    <label>
                         <h1>Select Eye Frame:</h1>
 
                         <div className="columns">
@@ -295,13 +294,11 @@ function QRForm() {
                             </div>
 
                         </div>
-                    </label>
                 </div>
 
 
                 {/* EYE BALL SELECTION */}
                 <div className="form-section">
-                    <label>
                         <h1>Select Eye Ball:</h1>
                         <div className="columns">
                             <div className="column">
@@ -310,13 +307,6 @@ function QRForm() {
                                     onClick={() => handleEyeBallChange("ball0")}
                                     src={ball0} 
                                     alt=""/>
-                                {/* <input
-                                    name="ball0"
-                                    type="checkbox"
-                                    checked={eyeBall === "ball0" ? true : false}
-                                    onChange={() => handleEyeBallChange("ball0")} 
-                                    value={eyeBall}
-                                /> */}
                             </div>
 
                             <div className="column">
@@ -325,13 +315,6 @@ function QRForm() {
                                     onClick={() => handleEyeBallChange("ball1")}
                                     src={ball1} 
                                     alt=""/>
-                                {/* <input
-                                    name="ball1"
-                                    type="checkbox"
-                                    checked={ eyeBall === "ball1" ? true : false }
-                                    onChange={() => handleEyeBallChange("ball1")} 
-                                    value={eyeBall}
-                                /> */}
                             </div>
 
                             <div className="column">
@@ -340,13 +323,6 @@ function QRForm() {
                                     onClick={() => handleEyeBallChange("ball2")}
                                     src={ball2} 
                                     alt=""/>
-                                {/* <input
-                                    name="ball2"
-                                    type="checkbox"
-                                    checked={ eyeBall === "ball2" ? true : false }
-                                    onChange={() => handleEyeBallChange("ball2")} 
-                                    value={eyeBall}
-                                /> */}
                             </div>
 
                             <div className="column">
@@ -355,13 +331,6 @@ function QRForm() {
                                     onClick={() => handleEyeBallChange("ball14")}
                                     src={ball14} 
                                     alt=""/>
-                                {/* <input
-                                    name="ball14"
-                                    type="checkbox"
-                                    checked={ eyeBall === "ball14" ? true : false }
-                                    onChange={() => handleEyeBallChange("ball14")} 
-                                    value={eyeBall}
-                                /> */}
                             </div>
 
                             <div className="column">
@@ -370,13 +339,6 @@ function QRForm() {
                                     onClick={() => handleEyeBallChange("ball16")}
                                     src={ball16} 
                                     alt=""/>
-                                {/* <input
-                                    name="ball16"
-                                    type="checkbox"
-                                    checked={ eyeBall === "ball16" ? true : false }
-                                    onChange={() => handleEyeBallChange("ball16")} 
-                                    value={eyeBall}
-                                /> */}
                             </div>
 
                             <div className="column">
@@ -385,17 +347,8 @@ function QRForm() {
                                     onClick={() => handleEyeBallChange("ball18")}
                                     src={ball18} 
                                     alt=""/>
-                                {/* <input
-                                    name="ball18"
-                                    type="checkbox"
-                                    checked={ eyeBall === "ball18" ? true : false }
-                                    onChange={() => handleEyeBallChange("ball18")} 
-                                    value={eyeBall}
-                                /> */}
                             </div>
-
                         </div>
-                    </label>
                 </div>
 
             </form>
@@ -409,7 +362,7 @@ function QRForm() {
 
             {qrCode ? 
                 <div className="code-container">
-                    <div id="code-image" dangerouslySetInnerHTML={{__html: qrCode}} />
+                    <div dangerouslySetInnerHTML={{__html: qrCode}} />
                 </div>
                 : 
                 ''}
