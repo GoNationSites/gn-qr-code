@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SketchPicker } from 'react-color'
-import squareBody from '../images/squarebody.png'
+import edgeCutBody from '../images/edgecutbody.png'
 import circleBody from '../images/circlebody.png'
 import circleZebraBody from '../images/circlezebrabody.png'
 import circularBody from '../images/circularbody.png'
@@ -32,7 +32,7 @@ function QRForm() {
 
     const [bgColor, setBgColor] = useState("#ffffff")
 
-    const [body, setBody] = useState("square")
+    const [body, setBody] = useState("edge-cut")
 
     const [eyeFrame, setEyeFrame] = useState("frame0")
 
@@ -85,8 +85,15 @@ function QRForm() {
                 "eye": `${eyeFrame}`,
                 "eyeBall": `${eyeBall}`,
                 "bodyColor": `${bodyColor}`,
+                "eye1Color": `${bodyColor}`,
+                "eye2Color": `${bodyColor}`,
+                "eye3Color":`${bodyColor}`,
+                "eyeBall1Color":`${bodyColor}`,
+                "eyeBall2Color":`${bodyColor}`,
+                "eyeBall3Color":`${bodyColor}`,
                 "bgColor": `${bgColor}`,
-                "logo": `${logo}`
+                "logo": `${logo}`,
+                "logoMode": "clean"
                 },
               data: `http%3A%2F%${url}`,
             },
@@ -104,7 +111,9 @@ function QRForm() {
     // console.log('body color: ', bodyColor)
 
     return(
-        <div>
+        <div className="columns">
+            <div className="column">
+
             <h1 className="form-title is-size-2">QR Code Generator</h1>
 
             <form>
@@ -171,166 +180,114 @@ function QRForm() {
 
                 </div>
 
-
-                {/* BODY SELECTION */}
                 <div className="form-section">
-                    <label>
-                        <h1>Body:</h1>
+                        <h1>Select Body Type:</h1>
 
                         <div className="columns">
 
                             <div className="column">
-                                <p>Square:</p>
-                                <img src={squareBody} alt=""/>
-                                <input
-                                    name="square"
-                                    type="checkbox"
-                                    checked={body === "square" ? true : false}
-                                    onChange={() => handleBodyChange("square")} 
-                                    value={body}
-                                />
+                                <img 
+                                    className={ body === "edge-cut" ? "selected-border" : "" }
+                                    onClick={()=> handleBodyChange("edge-cut")} 
+                                    src={edgeCutBody} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Circle:</p>
-                                <img src={circleBody} alt=""/>
-                                <input
-                                    name="circle"
-                                    type="checkbox"
-                                    checked={ body === "circle" ? true : false }
-                                    onChange={() => handleBodyChange("circle")} 
-                                    value={body}
-                                />
+                                <img 
+                                    className={ body === "circle" ? "selected-border" : "" }
+                                    onClick={() => handleBodyChange("circle")} 
+                                    src={circleBody} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Japnese:</p>
-                                <img src={japneseBody} alt=""/>
-                                <input
-                                    name="japnese"
-                                    type="checkbox"
-                                    checked={ body === "japnese" ? true : false }
-                                    onChange={() => handleBodyChange("japnese")} 
-                                    value={body}
-                                />
+                                <img                                     
+                                    className={ body === "japnese" ? "selected-border" : "" }
+                                    onClick={() => handleBodyChange("japnese")} 
+                                    src={japneseBody} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Circular:</p>
-                                <img src={circularBody} alt=""/>
-                                <input
-                                    name="circular"
-                                    type="checkbox"
-                                    checked={ body === "circular" ? true : false }
-                                    onChange={() => handleBodyChange("circular")} 
-                                    value={body}
-                                />
+                                <img
+                                    className={ body === "circular" ? "selected-border" : "" } 
+                                    onClick={() => handleBodyChange("circular")}
+                                    src={circularBody} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Dot:</p>
-                                <img src={dotBody} alt=""/>
-                                <input
-                                    name="dot"
-                                    type="checkbox"
-                                    checked={ body === "dot" ? true : false }
-                                    onChange={() => handleBodyChange("dot")} 
-                                    value={body}
-                                />
+                                <img 
+                                    className={ body === "dot" ? "selected-border" : "" }
+                                    onClick={() => handleBodyChange("dot")} 
+                                    src={dotBody} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Circle-Zebra:</p>
-                                <img src={circleZebraBody} alt=""/>
-                                <input
-                                    name="circle-zebra"
-                                    type="checkbox"
-                                    checked={ body === "circle-zebra" ? true : false }
-                                    onChange={() => handleBodyChange("circle-zebra")} 
-                                    value={body}
-                                />
+                                <img 
+                                    className={ body === "circle-zebra" ? "selected-border" : "" }
+                                    onClick={() => handleBodyChange("circle-zebra")} 
+                                    src={circleZebraBody} 
+                                    alt=""/>
                             </div>
                         </div>
-                    </label>
                 </div>
 
                 {/* EYE FRAME SELECTION */}
                 <div className="form-section">
                     <label>
-                        <h1>Eye Frame:</h1>
+                        <h1>Select Eye Frame:</h1>
 
                         <div className="columns">
 
                             <div className="column">
-                                <p>Option 1:</p>
-                                <img src={frame0} alt=""/>
-                                <input
-                                    name="frame0"
-                                    type="checkbox"
-                                    checked={eyeFrame === "frame0" ? true : false}
-                                    onChange={() => handleEyeFrameChange("frame0")} 
-                                    value={eyeFrame}
-                                />
+                                <img 
+                                    className={ eyeFrame === "frame0" ? "selected-border" : "" }
+                                    onClick={() => handleEyeFrameChange("frame0")}
+                                    src={frame0} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Option 2:</p>
-                                <img src={frame1} alt=""/>
-                                <input
-                                    name="frame1"
-                                    type="checkbox"
-                                    checked={ eyeFrame === "frame1" ? true : false }
-                                    onChange={() => handleEyeFrameChange("frame1")} 
-                                    value={eyeFrame}
-                                />
+                                <img 
+                                    className={ eyeFrame === "frame1" ? "selected-border" : "" } 
+                                    onClick={() => handleEyeFrameChange("frame1")}
+                                    src={frame1} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Option 3:</p>
-                                <img src={frame2} alt=""/>
-                                <input
-                                    name="frame2"
-                                    type="checkbox"
-                                    checked={ eyeFrame === "frame2" ? true : false }
-                                    onChange={() => handleEyeFrameChange("frame2")} 
-                                    value={eyeFrame}
-                                />
+                                <img 
+                                    className={ eyeFrame === "frame2" ? "selected-border" : "" }
+                                    onClick={() => handleEyeFrameChange("frame2")}
+                                    src={frame2} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Option 4:</p>
-                                <img src={frame12} alt=""/>
-                                <input
-                                    name="frame12"
-                                    type="checkbox"
-                                    checked={ eyeFrame === "frame12" ? true : false }
-                                    onChange={() => handleEyeFrameChange("frame12")} 
-                                    value={eyeFrame}
-                                />
+                                <img 
+                                    className={ eyeFrame === "frame12" ? "selected-border" : "" }
+                                    onClick={() => handleEyeFrameChange("frame12")}
+                                    src={frame12} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Option 5:</p>
-                                <img src={frame13} alt=""/>
-                                <input
-                                    name="frame13"
-                                    type="checkbox"
-                                    checked={ eyeFrame === "frame13" ? true : false }
-                                    onChange={() => handleEyeFrameChange("frame13")} 
-                                    value={eyeFrame}
-                                />
+                                <img 
+                                    className={ eyeFrame === "frame13" ? "selected-border" : "" }
+                                    onClick={() => handleEyeFrameChange("frame13")}
+                                    src={frame13} 
+                                    alt=""/>
                             </div>
 
                             <div className="column">
-                                <p>Option 6:</p>
-                                <img src={frame14} alt=""/>
-                                <input
-                                    name="frame14"
-                                    type="checkbox"
-                                    checked={ eyeFrame === "frame14" ? true : false }
-                                    onChange={() => handleEyeFrameChange("frame14")} 
-                                    value={eyeFrame}
-                                />
+                                <img 
+                                    className={ eyeFrame === "frame14" ? "selected-border" : "" }
+                                    onClick={() => handleEyeFrameChange("frame14")}
+                                    src={frame14} 
+                                    alt=""/>
                             </div>
 
                         </div>
@@ -341,78 +298,96 @@ function QRForm() {
                 {/* EYE BALL SELECTION */}
                 <div className="form-section">
                     <label>
-                        <h1>Eye Ball:</h1>
+                        <h1>Select Eye Ball:</h1>
                         <div className="columns">
                             <div className="column">
-                                <p>Option 1:</p>
-                                <img src={ball0} alt=""/>
-                                <input
+                                <img 
+                                    className={ eyeBall === "ball0" ? "selected-border" : "" }
+                                    onClick={() => handleEyeBallChange("ball0")}
+                                    src={ball0} 
+                                    alt=""/>
+                                {/* <input
                                     name="ball0"
                                     type="checkbox"
                                     checked={eyeBall === "ball0" ? true : false}
                                     onChange={() => handleEyeBallChange("ball0")} 
                                     value={eyeBall}
-                                />
+                                /> */}
                             </div>
 
                             <div className="column">
-                                <p>Option 2:</p>
-                                <img src={ball1} alt=""/>
-                                <input
+                                <img 
+                                    className={ eyeBall === "ball1" ? "selected-border" : "" }
+                                    onClick={() => handleEyeBallChange("ball1")}
+                                    src={ball1} 
+                                    alt=""/>
+                                {/* <input
                                     name="ball1"
                                     type="checkbox"
                                     checked={ eyeBall === "ball1" ? true : false }
                                     onChange={() => handleEyeBallChange("ball1")} 
                                     value={eyeBall}
-                                />
+                                /> */}
                             </div>
 
                             <div className="column">
-                                <p>Option 3:</p>
-                                <img src={ball2} alt=""/>
-                                <input
+                                <img 
+                                    className={ eyeBall === "ball2" ? "selected-border" : "" }
+                                    onClick={() => handleEyeBallChange("ball2")}
+                                    src={ball2} 
+                                    alt=""/>
+                                {/* <input
                                     name="ball2"
                                     type="checkbox"
                                     checked={ eyeBall === "ball2" ? true : false }
                                     onChange={() => handleEyeBallChange("ball2")} 
                                     value={eyeBall}
-                                />
+                                /> */}
                             </div>
 
                             <div className="column">
-                                <p>Option 4:</p>
-                                <img src={ball14} alt=""/>
-                                <input
+                                <img 
+                                    className={ eyeBall === "ball14" ? "selected-border" : "" }
+                                    onClick={() => handleEyeBallChange("ball14")}
+                                    src={ball14} 
+                                    alt=""/>
+                                {/* <input
                                     name="ball14"
                                     type="checkbox"
                                     checked={ eyeBall === "ball14" ? true : false }
                                     onChange={() => handleEyeBallChange("ball14")} 
                                     value={eyeBall}
-                                />
+                                /> */}
                             </div>
 
                             <div className="column">
-                                <p>Option 5:</p>
-                                <img src={ball16} alt=""/>
-                                <input
+                                <img 
+                                    className={ eyeBall === "ball16" ? "selected-border" : "" }
+                                    onClick={() => handleEyeBallChange("ball16")}
+                                    src={ball16} 
+                                    alt=""/>
+                                {/* <input
                                     name="ball16"
                                     type="checkbox"
                                     checked={ eyeBall === "ball16" ? true : false }
                                     onChange={() => handleEyeBallChange("ball16")} 
                                     value={eyeBall}
-                                />
+                                /> */}
                             </div>
 
                             <div className="column">
-                                <p>Option 6:</p>
-                                <img src={ball18} alt=""/>
-                                <input
+                                <img 
+                                    className={ eyeBall === "ball18" ? "selected-border" : "" }
+                                    onClick={() => handleEyeBallChange("ball18")}
+                                    src={ball18} 
+                                    alt=""/>
+                                {/* <input
                                     name="ball18"
                                     type="checkbox"
                                     checked={ eyeBall === "ball18" ? true : false }
                                     onChange={() => handleEyeBallChange("ball18")} 
                                     value={eyeBall}
-                                />
+                                /> */}
                             </div>
 
                         </div>
@@ -424,8 +399,17 @@ function QRForm() {
             <div className="create-btn-section">
                     <button className="button is-primary" onClick={fetchQR}>Create QR Code</button>
             </div>
+        </div>
 
-            {qrCode ? <div id="code-image" dangerouslySetInnerHTML={{__html: qrCode}} /> : ''}
+        <div className="column">
+
+            {qrCode ? 
+                <div className="code-container">
+                    <div id="code-image" dangerouslySetInnerHTML={{__html: qrCode}} />
+                </div>
+                : 
+                ''}
+        </div>
 
         </div>
     )
