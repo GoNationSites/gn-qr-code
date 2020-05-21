@@ -62,6 +62,10 @@ function QRForm() {
         setBodyColor(color.hex)
     }
 
+    // let handleBgColorChange = (color) => {
+    //     setBgColor(color.hex)
+    // }
+
     let handleBgColorChange = (color) => {
         setBgColor(color.hex)
     }
